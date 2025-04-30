@@ -10,7 +10,7 @@ load_dotenv()
 security = HTTPBearer()
 
 # Get the Auth service URL from environment variable
-USER_AUTH_SERVICE_URL = os.getenv("USER_AUTH_SERVICE_URL", "http://localhost:8000")
+USER_AUTH_SERVICE_URL = os.getenv("USER_AUTH_SERVICE_URL")
 
 def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Security(security)):
     token = credentials.credentials

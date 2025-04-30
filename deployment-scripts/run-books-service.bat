@@ -87,6 +87,7 @@ docker run -d ^
     -e DB_PASSWORD=%DB_PASSWORD% ^
     -e DB_HOST=%DB_HOST% ^
     -e DB_NAME=%DB_NAME% ^
+    -e USER_AUTH_SERVICE_URL=http://host.docker.internal:8000 ^
     -p %USER_PORT%:%USER_PORT% ^
     %USER_IMAGE%
 
