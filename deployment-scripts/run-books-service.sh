@@ -91,4 +91,4 @@ docker run -d \
 echo "✅ All services are up:"
 echo "- MySQL:         localhost:$DB_PORT"
 echo "- phpMyAdmin:    http://localhost:$PMA_PORT"
-echo "- Books Service:  http://localhost:$USER_PORT"
+echo "- Books Service:  http://localhost:$USER_PORT/docs"
