@@ -20,6 +20,8 @@ USER_CONTAINER=librarypal-books-service-container
 USER_IMAGE=librarypal-books-service
 USER_PORT=8001
 
+DEPENDENT_CONTAINERS=("librarypal-users-service-container")  # List of dependent containers
+
 # MySQL env vars for user-service
 DB_USER=root
 DB_PASSWORD=$DB_ROOT_PASSWORD
@@ -70,7 +72,24 @@ else
   fi
 fi
 
-# Always rebuild and restart user-service container
+# Check if all dependent containers are running
+echo "🔍 Checking dependent containers' running status..."
+
+for DEP_CONTAINER in "${DEPENDENT_CONTAINERS[@]}"; do
+  echo "Checking if container '$DEP_CONTAINER' is running..."
+
+  # Check if the dependent container is running
+  DEP_CONTAINER_RUNNING=$(docker ps -q -f name=$DEP_CONTAINER)
+
+  if [ -z "$DEP_CONTAINER_RUNNING" ]; then
+    echo "❌ Error: '$DEP_CONTAINER' is not running."
+    exit 1
+  else
+    echo "✅ '$DEP_CONTAINER' is running."
+  fi
+done
+
+# Always rebuild and restart books-service container
 echo "🧹 Stopping old books-service container (if any)..."
 docker rm -f $USER_CONTAINER 2>/dev/null || true
 
@@ -91,4 +110,4 @@ docker run -d \
 echo "✅ All services are up:"
 echo "- MySQL:         localhost:$DB_PORT"
 echo "- phpMyAdmin:    http://localhost:$PMA_PORT"
-echo "- Books Service:  http://localhost:$USER_PORT"
+echo "- Books Service:  http://localhost:$USER_PORT/docs"
