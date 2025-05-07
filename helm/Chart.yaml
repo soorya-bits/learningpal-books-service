@@ -1,5 +1,5 @@
 apiVersion: v2
 name: librarypal-books-service
-description: Helm chart for the users service of LibraryPal
+description: Helm chart for the books service of LibraryPal
 version: 0.1.0
 appVersion: "1.0.0"
