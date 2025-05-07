@@ -18,7 +18,7 @@ This application is a microservice designed to handle book-related operations su
 
 1. Clone the repository:
   ```bash
-  git clone https://github.com/soorya-bits/learningpal-books-service.git
+  git clone https://github.com/soorya-bits/librarypal-books-service.git
   cd learningpal-books-service
   ```
 
